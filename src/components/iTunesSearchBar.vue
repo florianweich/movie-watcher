@@ -6,7 +6,7 @@
           v-model="searchText"
           class="flex-1 p-3 border border-gray-300 rounded-md focus:border-transparent focus:ring-2 focus:ring-blue-500"
           type="search"
-          placeholder="Suche nach Film in iTunes..."
+          placeholder="Nach einem Film in iTunes suchen..."
           autocomplete="off"
           name="searchiTunes"
           id="search"
@@ -41,6 +41,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useItunesSearch } from '../use/itunes-search'
+
 import MovieCard from './MovieCard.vue'
 import Spinner from './Spinner.vue'
 

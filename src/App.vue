@@ -9,6 +9,10 @@
       <section>
         <i-tunes-search-bar />
       </section>
+
+      <section>
+        <watch-list />
+      </section>
     </main>
   </div>
 </template>
@@ -16,12 +20,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import iTunesSearchBar from './components/iTunesSearchBar.vue'
+import WatchList from './components/WatchList.vue'
 
 export default defineComponent({
   name: 'MoviePriceWatcher',
 
   components: {
     iTunesSearchBar,
+    WatchList,
   },
 })
 </script>

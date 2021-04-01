@@ -15,7 +15,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['even', 'odd'],
+    },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
 }

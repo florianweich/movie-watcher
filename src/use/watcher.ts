@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import { WatcherAddResult } from '../interfaces/WatcherAddResult'
 
 export function useWatcher() {
@@ -26,14 +26,64 @@ export function useWatcher() {
     })
 
     const result = (await res.json()) as WatcherAddResult
-    if (result.itunesId) added.value = true
+    if (result.itunesId) {
+      added.value = true
+      nextTick(() => refreshWatchlist())
+    }
 
     adding.value = false
+  }
+
+  const updating = ref(false)
+  const watchlist = ref<null | WatcherAddResult[]>(null)
+
+  const refreshWatchlist = async (updatePrices: boolean = false) => {
+    const watcherApiUrl = `${import.meta.env.VITE_WATCHER_API_URL as string}${
+      updatePrices ? '/update' : '/list'
+    }`
+
+    updating.value = true
+
+    const res = await fetch(watcherApiUrl)
+    const result = (await res.json()).filter(
+      (r: WatcherAddResult | null) => r !== null
+    )
+
+    watchlist.value = result
+
+    updating.value = false
+  }
+
+  const deleting = ref(false)
+
+  const deleteMovie = async (itunesId: string | number) => {
+    const watcherApiUrl = import.meta.env.VITE_WATCHER_API_URL as string
+
+    const body = { itunesId }
+
+    deleting.value = true
+
+    const res = await fetch(watcherApiUrl, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: JSON.stringify(body),
+    })
+
+    deleting.value = false
+
+    if (res.status === 204) nextTick(() => refreshWatchlist())
   }
 
   return {
     addMovie,
     added,
     adding,
+    refreshWatchlist,
+    watchlist,
+    updating,
+    deleteMovie,
+    deleting,
   }
 }

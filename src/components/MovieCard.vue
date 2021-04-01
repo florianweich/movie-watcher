@@ -56,6 +56,7 @@
 import { defineComponent, PropType } from 'vue'
 import { Result } from '../interfaces/ItunesSearchResult'
 import { useWatcher } from '../use/watcher'
+import { formatPrice, formatDate } from '../helpers'
 
 export default defineComponent({
   props: {
@@ -63,24 +64,6 @@ export default defineComponent({
   },
 
   setup() {
-    const formatPrice = (price?: number) => {
-      return new Intl.NumberFormat('de-DE', {
-        style: 'currency',
-        currency: 'EUR',
-      }).format(price ?? 0)
-    }
-
-    const formatDate = (raw: string) => {
-      const date = new Date(raw)
-      const options = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }
-      //@ts-ignore
-      return date.toLocaleDateString('de-DE', options)
-    }
-
     const { added, addMovie, adding } = useWatcher()
 
     return { formatPrice, formatDate, addMovie, added, adding }
