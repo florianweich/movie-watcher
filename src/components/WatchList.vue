@@ -9,7 +9,7 @@
       </div>
       <div>
         <button
-          @click="refreshWatchlist"
+          @click="() => refreshWatchlist()"
           class="rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           :class="{ 'animate-spin': updating }"
         >
