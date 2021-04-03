@@ -19,7 +19,7 @@
 
   <div v-if="iTunes.result?.resultCount" class="mt-6">
     <ul
-      class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
     >
       <li
         class="flex col-span-1 row-span-1 overflow-hidden shadow bg-gray-50 rounded-xl"
