@@ -1,10 +1,6 @@
 <template>
   <div class="flex flex-col flex-1">
-    <img
-      :src="movie.artworkUrl100"
-      :alt="movie.trackName"
-      class="block w-full h-auto"
-    />
+    <img :src="artworkUrl" :alt="movie.trackName" class="block w-full h-auto" />
     <div class="flex flex-col flex-1 p-3">
       <h3 class="text-xl font-bold">{{ movie.trackName }}</h3>
 
@@ -63,10 +59,14 @@ export default defineComponent({
     movie: { type: Object as PropType<Result>, required: true },
   },
 
-  setup() {
+  setup(props) {
     const { added, addMovie, adding } = useWatcher()
 
-    return { formatPrice, formatDate, addMovie, added, adding }
+    const artworkUrl = `${
+      import.meta.env.VITE_WATCHER_API_URL
+    }/artwork?trackId=${props.movie.trackId}`
+
+    return { formatPrice, formatDate, addMovie, added, adding, artworkUrl }
   },
 })
 </script>
