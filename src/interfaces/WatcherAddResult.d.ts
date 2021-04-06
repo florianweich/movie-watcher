@@ -5,5 +5,6 @@ export interface WatcherAddResult {
   link: string
   price: number
   title: string
+  thumbnail: string
   updatedAt: string
 }

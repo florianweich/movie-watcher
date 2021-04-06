@@ -48,6 +48,10 @@
                 <tr>
                   <th
                     scope="col"
+                    class="px-6 py-3 text-xs tracking-wider text-left text-gray-500 uppercase"
+                  ></th>
+                  <th
+                    scope="col"
                     class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                   >
                     Film
@@ -75,6 +79,15 @@
                   v-for="movie in watchlist"
                   :key="movie.itunesId"
                 >
+                  <td
+                    class="px-3 py-2 text-sm font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    <img
+                      class="w-12 h-auto rounded shadow-md"
+                      :src="movie.thumbnail"
+                      :alt="movie.title"
+                    />
+                  </td>
                   <td
                     class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap"
                   >
