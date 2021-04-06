@@ -36,6 +36,12 @@
       Keine Ergebnisse gefunden.
     </p>
   </div>
+
+  <div v-else-if="iTunes.error">
+    <p class="py-8 text-sm italic font-medium text-center text-red-500">
+      {{ iTunes.error }}
+    </p>
+  </div>
 </template>
 
 <script lang="ts">

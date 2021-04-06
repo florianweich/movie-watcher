@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col flex-1">
-    <img
-      loading="lazy"
-      :src="artworkUrl"
+    <placeholder-image
+      :url="artworkUrl"
+      :placeholderUrl="movie.artworkUrl100"
       :alt="movie.trackName"
-      class="block w-full h-auto"
     />
+
     <div class="flex flex-col flex-1 p-3">
       <h3 class="text-xl font-bold">{{ movie.trackName }}</h3>
 
@@ -58,10 +58,15 @@ import { defineComponent, PropType } from 'vue'
 import { Result } from '../interfaces/ItunesSearchResult'
 import { useWatcher } from '../use/watcher'
 import { formatPrice, formatDate } from '../helpers'
+import PlaceholderImage from '../components/PlaceholderImage.vue'
 
 export default defineComponent({
   props: {
     movie: { type: Object as PropType<Result>, required: true },
+  },
+
+  components: {
+    PlaceholderImage,
   },
 
   setup(props) {
