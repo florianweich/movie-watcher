@@ -31,9 +31,11 @@
       </div>
     </div>
 
+    <spinner :active="updating" />
+
     <div
       class="flex flex-col mt-6"
-      v-if="watchlist?.length"
+      v-if="!updating && watchlist?.length"
       :class="{ 'opacity-50': deleting }"
     >
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -52,13 +54,13 @@
                   </th>
                   <th
                     scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-right text-gray-500 uppercase"
                   >
                     Preis
                   </th>
                   <th
                     scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase"
                   >
                     Aktualisiert
                   </th>
@@ -78,10 +80,14 @@
                   >
                     {{ movie.title }}
                   </td>
-                  <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                  <td
+                    class="px-6 py-4 text-sm text-right text-gray-500 whitespace-nowrap"
+                  >
                     {{ formatPrice(movie.price) }}
                   </td>
-                  <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                  <td
+                    class="px-6 py-4 text-sm text-center text-gray-500 whitespace-nowrap"
+                  >
                     {{ formatDate(movie.updatedAt) }}
                   </td>
                   <td
@@ -137,8 +143,13 @@
 import { defineComponent, onMounted } from 'vue'
 import { useWatcher } from '../use/watcher'
 import { formatPrice, formatDate } from '../helpers'
+import Spinner from './Spinner.vue'
 
 export default defineComponent({
+  components: {
+    Spinner,
+  },
+
   setup() {
     const {
       updating,

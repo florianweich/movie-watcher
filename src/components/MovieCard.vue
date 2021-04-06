@@ -1,11 +1,16 @@
 <template>
   <div class="flex flex-col flex-1">
-    <img :src="artworkUrl" :alt="movie.trackName" class="block w-full h-auto" />
+    <img
+      loading="lazy"
+      :src="artworkUrl"
+      :alt="movie.trackName"
+      class="block w-full h-auto"
+    />
     <div class="flex flex-col flex-1 p-3">
       <h3 class="text-xl font-bold">{{ movie.trackName }}</h3>
 
       <span class="block text-lg font-semibold text-blue-600">{{
-        formatPrice(movie.collectionHdPrice)
+        formatPrice(movie.trackHdPrice)
       }}</span>
 
       <p class="mt-auto text-sm line-clamp-3" :title="movie.longDescription">
