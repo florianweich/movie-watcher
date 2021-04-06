@@ -2,7 +2,7 @@
   <div class="flex flex-col flex-1">
     <placeholder-image
       :url="artworkUrl"
-      :placeholderUrl="movie.artworkUrl100"
+      :placeholderUrl="artworkPlaceholderUrl"
       :alt="movie.trackName"
     />
 
@@ -72,11 +72,25 @@ export default defineComponent({
   setup(props) {
     const { added, addMovie, adding } = useWatcher()
 
-    const artworkUrl = `${
-      import.meta.env.VITE_WATCHER_API_URL
-    }/artwork?trackId=${props.movie.trackId}`
+    const artworkUrl = props.movie.artworkUrl100.replace(
+      '/100x100bb.jpg',
+      '/536x0w.webp'
+    )
 
-    return { formatPrice, formatDate, addMovie, added, adding, artworkUrl }
+    const artworkPlaceholderUrl = `${props.movie.artworkUrl100.slice(
+      0,
+      -4
+    )}.webp`
+
+    return {
+      formatPrice,
+      formatDate,
+      addMovie,
+      added,
+      adding,
+      artworkUrl,
+      artworkPlaceholderUrl,
+    }
   },
 })
 </script>
