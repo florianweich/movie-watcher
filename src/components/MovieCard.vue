@@ -2,7 +2,7 @@
   <div class="flex flex-col flex-1">
     <placeholder-image
       :url="artworkUrl"
-      :placeholderUrl="artworkPlaceholderUrl"
+      :placeholderUrl="movie.artworkUrl100"
       :alt="movie.trackName"
     />
 
@@ -77,11 +77,6 @@ export default defineComponent({
       '/536x0w.webp'
     )
 
-    const artworkPlaceholderUrl = `${props.movie.artworkUrl100.slice(
-      0,
-      -4
-    )}.webp`
-
     return {
       formatPrice,
       formatDate,
@@ -89,7 +84,6 @@ export default defineComponent({
       added,
       adding,
       artworkUrl,
-      artworkPlaceholderUrl,
     }
   },
 })
