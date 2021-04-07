@@ -1,10 +1,10 @@
 <template>
-  <div class="p-3 bg-gray-100 shadow rounded-xl">
+  <div class="p-3 bg-gray-100 shadow dark:bg-gray-900 rounded-xl">
     <form @submit.prevent="searchItunes">
       <div class="flex">
         <input
           v-model="searchText"
-          class="flex-1 p-3 border border-gray-300 rounded-md focus:border-transparent focus:ring-2 focus:ring-blue-500"
+          class="flex-1 p-3 border border-gray-300 rounded-md dark:border-gray-600 dark:placeholder-gray-500 dark:text-gray-100 dark:bg-gray-700 focus:border-transparent focus:ring-2 focus:ring-blue-500"
           type="search"
           placeholder="Nach einem Film in iTunes suchen..."
           autocomplete="off"
@@ -22,7 +22,7 @@
       class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
     >
       <li
-        class="flex col-span-1 row-span-1 overflow-hidden shadow bg-gray-50 rounded-xl"
+        class="flex col-span-1 row-span-1 overflow-hidden shadow bg-gray-50 dark:bg-gray-900 rounded-xl"
         v-for="movie in iTunes.result.results"
         :key="movie.trackId"
       >

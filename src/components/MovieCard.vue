@@ -7,17 +7,22 @@
     />
 
     <div class="flex flex-col flex-1 p-3">
-      <h3 class="text-xl font-bold">{{ movie.trackName }}</h3>
+      <h3 class="text-xl font-bold dark:text-gray-300">
+        {{ movie.trackName }}
+      </h3>
 
       <span class="block text-lg font-semibold text-blue-600">{{
         formatPrice(movie.trackHdPrice)
       }}</span>
 
-      <p class="mt-auto text-sm line-clamp-3" :title="movie.longDescription">
+      <p
+        class="mt-auto text-sm line-clamp-3 dark:text-gray-400"
+        :title="movie.longDescription"
+      >
         {{ movie.longDescription }}
       </p>
 
-      <p class="mt-2 text-sm">
+      <p class="mt-2 text-sm dark:text-gray-400">
         <span class="block"
           ><strong class="font-medium">Regie:</strong>
           {{ movie.artistName }}</span
@@ -31,7 +36,7 @@
       <button
         :disabled="added || adding"
         @click.prevent="addMovie(movie.trackId)"
-        class="flex items-center justify-center p-2 mt-3 font-semibold text-white rounded-lg flex-nowrap focus:ring-offset-white focus:ring-offset-2 focus:outline-none focus:ring-2"
+        class="flex items-center justify-center p-2 mt-3 font-semibold text-white rounded-lg flex-nowrap dark:focus:ring-offset-gray-900 focus:ring-offset-white focus:ring-offset-2 focus:outline-none focus:ring-2"
         :class="
           added || adding
             ? 'bg-gray-500 focus:ring-gray-500'
