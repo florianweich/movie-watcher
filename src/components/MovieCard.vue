@@ -8,11 +8,11 @@
 
     <div class="flex flex-col flex-1 p-3">
       <h3 class="text-xl font-bold dark:text-gray-300">
-        {{ movie.trackName }}
+        {{ movie.trackName ?? movie.collectionName }}
       </h3>
 
       <span class="block text-lg font-semibold text-blue-600">{{
-        formatPrice(movie.trackHdPrice)
+        formatPrice(movie.trackHdPrice ?? movie.collectionHdPrice)
       }}</span>
 
       <p
@@ -35,7 +35,7 @@
 
       <button
         :disabled="added || adding"
-        @click.prevent="addMovie(movie.trackId)"
+        @click.prevent="addMovie(movie.trackId ?? movie.collectionId)"
         class="flex items-center justify-center p-2 mt-3 font-semibold text-white rounded-lg flex-nowrap dark:focus:ring-offset-gray-900 focus:ring-offset-white focus:ring-offset-2 focus:outline-none focus:ring-2"
         :class="
           added || adding

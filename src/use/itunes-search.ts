@@ -1,8 +1,12 @@
-import { reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import { ItunesSearchResult } from '../interfaces/ItunesSearchResult'
 
 export function useItunesSearch() {
   const searchText = ref('')
+  const mediaType = ref('movie')
+  const entity = computed(() => {
+    return mediaType.value === 'tvShow' ? 'tvSeason' : ''
+  })
 
   const iTunes = reactive<ItunesSearchReactive>({
     isSearching: false,
@@ -10,8 +14,12 @@ export function useItunesSearch() {
     error: '',
   })
 
-  watch(searchText, (newText) => {
+  watch(searchText, newText => {
     if (!newText) iTunes.result = null
+  })
+
+  watch(mediaType, () => {
+    if (searchText.value) searchItunes()
   })
 
   const searchItunes = async () => {
@@ -23,7 +31,7 @@ export function useItunesSearch() {
 
     try {
       const res = await fetch(
-        `https://itunes.apple.com/search?media=movie&country=de&term=${searchText.value}`
+        `https://itunes.apple.com/search?media=${mediaType.value}&entity=${entity.value}&country=de&term=${searchText.value}`
       )
 
       const result: ItunesSearchResult = await res.json()
@@ -38,6 +46,7 @@ export function useItunesSearch() {
 
   return {
     searchText,
+    mediaType,
     iTunes,
     searchItunes,
   }

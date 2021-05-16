@@ -9,7 +9,9 @@ export function useWatcher() {
   const adding = ref<boolean>(false)
 
   /// Add movie
-  const addMovie = async (itunesId: string | number) => {
+  const addMovie = async (itunesId?: string | number) => {
+    if (!itunesId) return
+
     const watcherApiUrl = import.meta.env.VITE_WATCHER_API_URL as string
 
     /// Request body

@@ -26,8 +26,10 @@ export interface Result {
   trackExplicitness: string
   trackHdPrice: number
   trackHdRentalPrice: number
-  trackId: number
-  trackName: string
+  trackId?: number
+  collectionId?: number
+  trackName?: string
+  collectionName?: string
   trackPrice: number
   trackRentalPrice: number
   trackTimeMillis: number

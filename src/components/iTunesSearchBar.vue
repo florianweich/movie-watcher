@@ -1,7 +1,7 @@
 <template>
   <div class="p-3 bg-gray-100 shadow dark:bg-gray-900 rounded-xl">
     <form @submit.prevent="searchItunes">
-      <div class="flex">
+      <div class="flex gap-3">
         <input
           v-model="searchText"
           class="flex-1 p-3 border border-gray-300 rounded-md dark:border-gray-600 dark:placeholder-gray-500 dark:text-gray-100 dark:bg-gray-700 focus:border-transparent focus:ring-2 focus:ring-blue-500"
@@ -11,6 +11,17 @@
           name="searchiTunes"
           id="search"
         />
+
+        <select
+          v-model="mediaType"
+          class="py-3 border border-gray-300 rounded-md dark:border-gray-600 dark:placeholder-gray-500 dark:text-gray-100 dark:bg-gray-700 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+          name="media"
+          id="media"
+        >
+          <option value="" disabled>Medientyp</option>
+          <option value="movie">Film</option>
+          <option value="tvShow">Serie</option>
+        </select>
       </div>
     </form>
   </div>
@@ -58,9 +69,9 @@ export default defineComponent({
   },
 
   setup() {
-    const { searchText, iTunes, searchItunes } = useItunesSearch()
+    const { searchText, iTunes, searchItunes, mediaType } = useItunesSearch()
 
-    return { searchText, iTunes, searchItunes }
+    return { searchText, iTunes, searchItunes, mediaType }
   },
 })
 </script>
