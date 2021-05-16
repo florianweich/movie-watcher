@@ -6,7 +6,7 @@
           v-model="searchText"
           class="flex-1 p-3 border border-gray-300 rounded-md dark:border-gray-600 dark:placeholder-gray-500 dark:text-gray-100 dark:bg-gray-700 focus:border-transparent focus:ring-2 focus:ring-blue-500"
           type="search"
-          placeholder="Nach einem Film in iTunes suchen..."
+          placeholder="In iTunes suchen..."
           autocomplete="off"
           name="searchiTunes"
           id="search"
